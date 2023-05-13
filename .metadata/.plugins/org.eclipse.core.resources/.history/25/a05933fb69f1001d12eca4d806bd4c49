@@ -1,0 +1,50 @@
+package table;
+
+public class Customer {
+	private int id;
+	private String pwd;
+	private String name;
+	private String accountMgr;
+	
+	public Customer(int id, String pwd, String name, String accountMgr) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.accountMgr = accountMgr;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAccountMgr() {
+		return accountMgr;
+	}
+
+	public void setAccountMgr(String accountMgr) {
+		this.accountMgr = accountMgr;
+	}
+	
+	
+}

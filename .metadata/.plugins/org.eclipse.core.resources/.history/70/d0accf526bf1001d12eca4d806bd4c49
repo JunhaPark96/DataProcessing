@@ -1,0 +1,38 @@
+package service;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import connection.JDBC;
+
+public class CustomerImpl {
+	private static Scanner scanner = new Scanner(System.in);
+	private static JDBC jdbc = JDBC.getInstance();
+	
+	public static void customerList() {
+	    try {
+	        Connection conn = jdbc.getConnection(); // jdbc연결 가져오기
+	        Statement stmt = conn.createStatement();
+	        ResultSet rs = stmt.executeQuery("select * from customer");
+	        
+	        while (rs.next()) {
+	            int id = rs.getInt(1);
+	            String pwd = rs.getString(2);
+	            String name = rs.getString(3);
+	            int accoungMGR = rs.getInt(4);
+	            System.out.println(
+	                    rs.getInt("empno") + " " + rs.getString("ename") + " " + rs.getString("job")
+	                            + " " + rs.getInt("mgr") + " " + rs.getString("hireDate")
+	                            + " " + rs.getInt("sal") + " " + rs.getInt("comm") +
+	                            " " + rs.getInt("deptno"));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // connection 종료 안함
+	    }
+}

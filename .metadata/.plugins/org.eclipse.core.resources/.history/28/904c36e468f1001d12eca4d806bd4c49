@@ -1,0 +1,9 @@
+package table;
+
+public class Customer {
+	private int id;
+	private String pwd;
+	private String name;
+	private String accountMgr;
+	
+}

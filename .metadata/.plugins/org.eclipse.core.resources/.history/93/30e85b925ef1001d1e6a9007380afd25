@@ -1,0 +1,58 @@
+package presentation;
+
+import java.sql.Connection;
+
+import connection.JDBC;
+
+public class MainController {
+
+	public static void main(String[] args) {
+		String driver = "oracle.jdbc.driver.OracleDriver";
+
+		try {
+
+			Class.forName(driver);
+			System.out.println("JDBC Driver Loading 성공!!");
+
+		} catch (Exception e) {
+			
+			System.out.println("JDBC Driver Loading 실패!!");
+			e.printStackTrace();
+			
+		}
+		
+		JDBC jdbc = JDBC.getInstance();
+		
+	}
+
+}
+public void printUserList() {
+    try {
+        Connection conn = jdbc.getConnection(); // jdbc연결 가져오기
+        Statement stmt = conn.createStatement();
+//        ResultSet rs = stmt.executeQuery("select * from libuser");
+        // age는 현재날짜와 생일을 기준으로 계산
+        ResultSet rs = stmt.executeQuery("select id, name, "
+                + "extract(year from sysdate) - extract(year from birthDate) + 1 as age, "
+                + "address, contact, birthDate, joinDate from libuser order by id");
+        System.out.println("유저ID 이름 나이 주소 전화번호 생일 가입일자");
+        while (rs.next()) {
+            String id = rs.getString(1);
+            String name = rs.getString(2);
+            int age = rs.getInt(3);
+            String address = rs.getString(4);
+            String contact = rs.getString(5);
+            Date birthDate = rs.getDate(6);
+            Date joinDate = rs.getDate(7);
+            System.out.println(
+                    rs.getString("id") + " " + rs.getString("name") + " " + rs.getInt("age")
+                            + " " + rs.getString("address") + " " + rs.getString("contact")
+                            + " " + rs.getString("birthDate") + " " + rs.getString("joinDate"));
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        // connection 종료 안함
+    }
+
+}

@@ -1,0 +1,28 @@
+package table;
+
+import java.time.LocalDate;
+
+public class Emp {
+	private int empno;
+	private String ename;
+	private String job;
+	private int mgr;
+	private LocalDate hiredate;
+	private int sal;
+	private int comm;
+	private int deptno;
+	
+	public Emp(int empno, String ename, String job, int mgr, LocalDate hiredate, int sal, int comm, int deptno) {
+		this.empno = empno;
+		this.ename = ename;
+		this.job = job;
+		this.mgr = mgr;
+		this.hiredate = hiredate;
+		this.sal = sal;
+		this.comm = comm;
+		this.deptno = deptno;
+	}
+	
+	
+	
+}
