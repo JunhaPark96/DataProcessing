@@ -1,0 +1,11 @@
+package presentation;
+
+import repository.CustomerRepository;
+
+public class CustomerController {
+	private CustomerRepository customerRepository;
+	
+	public void loadCustomerList() {
+		
+	}
+}

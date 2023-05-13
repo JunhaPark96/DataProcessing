@@ -1,45 +1,60 @@
 package table;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Customer {
-	private String id;
-	private String pwd;
-	private String name;
+	private List<Customer> customerList;
+	private int count;
 	private int accountMgr;
 	
-	public Customer(String id, String pwd, String name, int accountMgr) {
-		this.id = id;
-		this.pwd = pwd;
-		this.name = name;
+	public Customer() {
+	}
+
+	public Customer(int count, int accountMgr) {
+		this.count = count;
 		this.accountMgr = accountMgr;
 	}
-	public String getId() {
-		return id;
+
+	public List<Customer> getCustomerList() {
+		return customerList;
 	}
-	public void setId(String id) {
-		this.id = id;
+
+	public void setCustomerList(List<Customer> customerList) {
+		this.customerList = customerList;
 	}
-	public String getPwd() {
-		return pwd;
+
+	public int getCount() {
+		return count;
 	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+
+	public void setCount(int count) {
+		this.count = count;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	public int getAccountMgr() {
 		return accountMgr;
 	}
+
 	public void setAccountMgr(int accountMgr) {
 		this.accountMgr = accountMgr;
 	}
-	
-	
-	
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(accountMgr, count, customerList);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Customer other = (Customer) obj;
+		return accountMgr == other.accountMgr && count == other.count
+				&& Objects.equals(customerList, other.customerList);
+	}
 }

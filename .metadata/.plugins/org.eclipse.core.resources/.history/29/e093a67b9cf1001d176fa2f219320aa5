@@ -1,0 +1,22 @@
+package table;
+
+import java.util.List;
+
+public class Customer {
+	private List<Customer> customerList;
+	private int count;
+	private int accountMgr;
+	
+	public Customer() {
+	}
+
+	public Customer(int count, int accountMgr) {
+		this.count = count;
+		this.accountMgr = accountMgr;
+	}
+
+	
+	
+	
+	
+}

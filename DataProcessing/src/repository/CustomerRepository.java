@@ -1,5 +1,9 @@
 package repository;
 
+import java.util.List;
+
+import table.Customer;
+
 public interface CustomerRepository {
-	void customerList();
+	List<Customer> printCustomerList();
 }

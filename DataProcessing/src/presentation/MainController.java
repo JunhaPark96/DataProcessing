@@ -18,7 +18,8 @@ public class MainController {
 		Scanner scanner = new Scanner(System.in);
 		JDBC jdbc = JDBC.getInstance();
 		
-		CustomerImpl customerImpl = new CustomerImpl();
+		CustomerController customerController = new CustomerController(
+				new CustomerImpl());
 		EmpImpl empImpl = new EmpImpl();
 		
 		boolean isExit = false;
@@ -27,7 +28,8 @@ public class MainController {
 			    System.out.println("1. 데이터 조회, 2. 보너스 처리, 3. 저장");
 			    int target = scanner.nextInt();
 			    if (target == 1) {
-			    	customerImpl.customerList(); // customer 테이블에 담당 사원 조희
+			    	customerController.loadCustomerList(); // customer 테이블에 담당 사원 조희
+			    	
 			    } else if (target == 2) {
 //			    	bonusLogic(); // 조건에 따라 보너스 처리
 			    } else if (target == 3) {
@@ -41,6 +43,7 @@ public class MainController {
 			e.printStackTrace();
 		}
 	}
+	
 	
 }
 
