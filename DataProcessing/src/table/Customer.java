@@ -11,9 +11,9 @@ public class Customer {
 	public Customer() {
 	}
 
-	public Customer(int count, int accountMgr) {
-		this.count = count;
+	public Customer(int accountMgr, int count) {
 		this.accountMgr = accountMgr;
+		this.count = count;
 	}
 
 	public List<Customer> getCustomerList() {

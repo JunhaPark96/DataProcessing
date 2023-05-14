@@ -1,5 +1,9 @@
 package repository;
 
+import java.util.List;
+
+import table.Emp;
+
 public interface BonusRepository {
-	void bonusCommit();
+	public void bonusCommit(List<Emp> empList);
 }

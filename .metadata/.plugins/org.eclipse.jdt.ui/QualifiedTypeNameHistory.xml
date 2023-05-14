@@ -8,15 +8,16 @@
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="connection.JDBC"/>
-    <fullyQualifiedTypeName name="repository.EmpRepository"/>
-    <fullyQualifiedTypeName name="service.EmpImpl"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="table.Customer"/>
     <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="repository.CustomerRepository"/>
     <fullyQualifiedTypeName name="presentation.CustomerController"/>
     <fullyQualifiedTypeName name="service.CustomerImpl"/>
+    <fullyQualifiedTypeName name="repository.CustomerRepository"/>
+    <fullyQualifiedTypeName name="presentation.EmpController"/>
+    <fullyQualifiedTypeName name="service.EmpImpl"/>
+    <fullyQualifiedTypeName name="table.Customer"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="repository.EmpRepository"/>
 </qualifiedTypeNameHistroy>

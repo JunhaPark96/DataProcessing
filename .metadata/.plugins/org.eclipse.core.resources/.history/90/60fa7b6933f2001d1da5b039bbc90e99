@@ -1,0 +1,86 @@
+package presentation;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import connection.JDBC;
+import repository.BonusRepository;
+import repository.CustomerRepository;
+import repository.EmpRepository;
+import table.Customer;
+import table.Emp;
+
+public class MainController {
+	private CustomerRepository customerRepository = new Customerlmpl();
+	private EmpRepository empRepository = new Emplmpl();
+	private BonusRepository bonusRepository = new Bonuslmpl();
+	
+	Customer customer = new Customer();
+	List<Customer> customerList = new ArrayList<>();
+	List<Emp> empList = new ArrayList<>();
+	
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		JDBC jdbc = JDBC.getInstance();
+		
+//		CustomerController customerController = new CustomerController(
+//				new CustomerImpl());
+//		
+//		EmpController empController = new EmpController(
+//				new EmpImpl(), customerList);
+//		
+//		BonusController bonusController = new BonusController(
+//				new BonusImpl(), empList);
+		
+		boolean isExit = false;
+		try {
+			while (!isExit) {
+			    System.out.println("1. 데이터 조회, 2. 보너스 처리, 3. 저장");
+			    int target = scanner.nextInt();
+			    if (target == 1) {
+			    	loadCustomerList(); // customer 테이블에 사원당 관리하는 고객 처리
+			    } else if (target == 2) {
+			    	bonusLogic(); // 조건에 따라 보너스 처리
+			    } else if (target == 3) {
+			    	bonusCommit(); // 데이터 처리 commit 후 종료
+			    }
+			    else {
+			        System.out.println("다시 입력해주십시오");
+			    }
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadCustomerList() {
+		long startTime = System.currentTimeMillis(); // 코드 실행 전 시간 측정
+
+		customerList = customerRepository.printCustomerList();
+
+		for (Customer customer : customerList) {
+			System.out.println("직원번호 : " + customer.getMgr_empno() + "\t" + "고객관리(명) : " + customer.getCount());
+		}
+
+		long endTime = System.currentTimeMillis(); // 코드 실행 후 시간 측정
+		double time = (endTime - startTime) / 1000.0;
+		System.out.println("Elapsed Time : " + time + "초");
+	}
+
+	public void bonusLogic(List<Customer> customerList) {
+		empList = empRepository.calCulatorEmp(customerList);
+
+		for (Emp emp : empList) {
+			System.out.println("직원번호 : " + emp.getEmpno() + "\t" + "직원이름 : " + emp.getEname() + "\t" + "직업 : "
+					+ emp.getJob() + "\t" + "고객관리(명) : " + emp.getCountCustomer() + "\t" + "급여 : " + emp.getSal() + "\t"
+					+ "보너스 : " + emp.getComm());
+		}
+	}
+
+	public void bonusCommit() {
+		bonusRepository.saveBonus(empList);
+	}
+}
+
+

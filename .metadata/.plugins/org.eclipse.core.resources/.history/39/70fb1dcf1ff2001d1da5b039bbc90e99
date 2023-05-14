@@ -1,0 +1,15 @@
+package service;
+
+import java.util.List;
+
+import repository.BonusRepository;
+import table.Emp;
+
+public class BonusImpl implements BonusRepository{
+	
+	@Override
+	public void bonusCommit(List<Emp> empList) {
+		for ()
+	}
+	
+}

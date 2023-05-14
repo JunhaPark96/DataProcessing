@@ -1,0 +1,10 @@
+package presentation;
+
+import java.util.ArrayList;
+
+import repository.EmpRepository;
+
+public class EmpController {
+	private EmpRepository empRepository;
+	List<Emp> empList = new ArrayList<>();
+}

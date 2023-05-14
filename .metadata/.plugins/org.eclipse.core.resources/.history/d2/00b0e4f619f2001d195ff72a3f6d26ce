@@ -1,0 +1,7 @@
+package presentation;
+
+import repository.EmpRepository;
+
+public class EmpController {
+	private EmpRepository empRepository;
+}

@@ -1,8 +1,10 @@
 package table;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Emp {
+	private List<Emp> empList;
 	private int empno;
 	private String ename;
 	private String job;
@@ -12,7 +14,6 @@ public class Emp {
 	private int deptno;
 	
 	public Emp(int empno, String ename, String job, int mgr, int sal, int comm, int deptno) {
-		super();
 		this.empno = empno;
 		this.ename = ename;
 		this.job = job;
@@ -21,62 +22,87 @@ public class Emp {
 		this.comm = comm;
 		this.deptno = deptno;
 	}
+
+	
+	public List<Emp> getEmpList() {
+		return empList;
+	}
+
+
+	public void setEmpList(List<Emp> empList) {
+		this.empList = empList;
+	}
+
 
 	public int getEmpno() {
 		return empno;
 	}
 
+
 	public void setEmpno(int empno) {
 		this.empno = empno;
 	}
+
 
 	public String getEname() {
 		return ename;
 	}
 
+
 	public void setEname(String ename) {
 		this.ename = ename;
 	}
+
 
 	public String getJob() {
 		return job;
 	}
 
+
 	public void setJob(String job) {
 		this.job = job;
 	}
+
 
 	public int getMgr() {
 		return mgr;
 	}
 
+
 	public void setMgr(int mgr) {
 		this.mgr = mgr;
 	}
+
 
 	public int getSal() {
 		return sal;
 	}
 
+
 	public void setSal(int sal) {
 		this.sal = sal;
 	}
+
 
 	public int getComm() {
 		return comm;
 	}
 
+
 	public void setComm(int comm) {
 		this.comm = comm;
 	}
+
 
 	public int getDeptno() {
 		return deptno;
 	}
 
+
 	public void setDeptno(int deptno) {
 		this.deptno = deptno;
 	}
+
 
 	@Override
 	public int hashCode() {

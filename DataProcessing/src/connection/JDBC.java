@@ -23,6 +23,9 @@ public class JDBC {
             String url = "jdbc:oracle:thin:@localhost:1521:dink09";
             String user = "scott";
             String password = "tiger";
+//            String url = "jdbc:oracle:thin:@dinkdb_medium?TNS_ADMIN=C:\\Users\\JUNHA\\Wallet_DinkDB";
+//            String user = "DA2309";
+//            String password = "Data2309";
             conn = DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

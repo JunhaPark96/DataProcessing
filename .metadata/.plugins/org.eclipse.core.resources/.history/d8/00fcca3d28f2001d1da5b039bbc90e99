@@ -1,0 +1,39 @@
+package service;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+
+import connection.JDBC;
+import repository.BonusRepository;
+import table.Emp;
+
+public class BonusImpl implements BonusRepository{
+	private JDBC jdbc = JDBC.getInstance();
+	
+	@Override
+	public void bonusCommit(List<Emp> empList) {
+		Connection conn = jdbc.getConnection(); // jdbc연결 가져오기
+		
+		for (Emp emp : empList) {
+			// bonus 테이블의 컬럼
+			String ename = emp.getEname();
+			String job = emp.getJob();
+			int sal = emp.getSal();
+			int comm = emp.getComm();
+			
+	        try {
+				Statement stmt = conn.createStatement();
+				String sql = "INSERT INTO bonus (ename, job, sal, comm) VALUES ('" + ename + "', '" + job + "', "
+						+ sal + ", " + comm + ")";
+				stmt.executeUpdate(sql);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+}

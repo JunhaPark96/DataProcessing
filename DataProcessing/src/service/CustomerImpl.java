@@ -42,6 +42,7 @@ public class CustomerImpl implements CustomerRepository{
 	        }
 	        for (Integer idx : mgrEmpno.keySet()) {
 	        	Customer customer = new Customer(idx, mgrEmpno.get(idx));
+	        	customerList.add(customer);
 	        }
 	        rs.close();
 	        stmt.close();

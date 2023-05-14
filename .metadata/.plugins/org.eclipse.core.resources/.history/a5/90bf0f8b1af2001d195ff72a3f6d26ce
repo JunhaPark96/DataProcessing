@@ -1,0 +1,20 @@
+package presentation;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import repository.EmpRepository;
+import table.Emp;
+
+public class EmpController {
+	private EmpRepository empRepository;
+	List<Emp> empList = new ArrayList<>();
+	
+	public EmpController(EmpRepository empRepository) {
+		this.empRepository = empRepository;
+	}
+	
+	public void bonusLogic() {
+		
+	}
+}
