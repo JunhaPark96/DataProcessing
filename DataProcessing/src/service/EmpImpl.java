@@ -40,11 +40,6 @@ public class EmpImpl implements EmpRepository{
 	        		int sal = rs.getInt(6);
 	        		int comm = rs.getInt(7);
 	        		int deptno = rs.getInt(8);
-//	        		System.out.println(
-//	        				rs.getInt("empno") + " " + rs.getString("ename") + " " + rs.getString("job")
-//	        				+ " " + rs.getInt("mgr") + " " + rs.getString("hireDate")
-//	        				+ " " + rs.getInt("sal") + " " + rs.getInt("comm") +
-//	        				" " + rs.getInt("deptno"));
 	        		// president와 analyst 보너스 제외
 	        		if (job.equals("PRESIDENT") || job.equals("ANALYST")) {
 	        			Emp emp = new Emp(empno, ename, job, mgr, sal, comm, deptno);

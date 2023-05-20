@@ -1,5 +1,9 @@
 package presentation;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -24,36 +28,51 @@ public class MainController {
 	List<Emp> empList = new ArrayList<>();
 
 	public MainController() {
-		Scanner scanner = new Scanner(System.in);
+//		Scanner scanner = new Scanner(System.in);
 		JDBC jdbc = JDBC.getInstance();
-
-//		CustomerController customerController = new CustomerController(
-//				new CustomerImpl());
-//		
-//		EmpController empController = new EmpController(
-//				new EmpImpl(), customerList);
-//		
-//		BonusController bonusController = new BonusController(
-//				new BonusImpl(), empList);
-
-		boolean isExit = false;
+		Statement statement = null;
+		
+		String sql = "insert into bonus (ename, job, sal, comm)\r\n"
+				+ "select e.ename, e.job, e.sal, case\r\n"
+				+ "when e.job in ('ANALYST', 'PRESIDENT') then 0\r\n"
+				+ "else nvl(c.comm, 0) + nvl(e.comm, 0) end as comm\r\n"
+				+ "from emp e,\r\n"
+				+ "(select account_mgr, case\r\n"
+				+ "    when count(account_mgr) < 100000 then 1000\r\n"
+				+ "    else 2000\r\n"
+				+ "    end as comm\r\n"
+				+ "    from customer group by account_mgr) c\r\n"
+				+ "where e.empno = c.account_mgr(+)";
+		long startTime = System.currentTimeMillis(); // 코드 실행 전 시간 측정
 		try {
-			while (!isExit) {
-				System.out.println("1. 데이터 조회, 2. 보너스 처리, 3. 저장");
-				int target = scanner.nextInt();
-				if (target == 1) {
-					loadCustomerList(); // customer 테이블에 사원당 관리하는 고객 처리
-				} else if (target == 2) {
-					bonusLogic(); // 조건에 따라 보너스 처리
-				} else if (target == 3) {
-					bonusCommit(); // 데이터 처리 commit 후 종료
-				} else {
-					System.out.println("다시 입력해주십시오");
-				}
-			}
-		} catch (Exception e) {
+			System.out.println("Connected to database.");
+
+
+			Connection conn = jdbc.getConnection();
+			conn.setAutoCommit(false);
+			// 데이터베이스 연결
+			statement = conn.createStatement();
+			statement.executeUpdate(sql);
+
+			// 트랜잭션 커밋
+			conn.commit();
+
+			long endTime = System.currentTimeMillis(); // 코드 실행 후 시간 측정
+			double time = (endTime - startTime) / 1000.0;
+			System.out.println("처리시간 : " + time + "초");
+
+		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (statement != null) {
+					statement.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
+		
 	}
 
 	public void loadCustomerList() {
@@ -63,9 +82,9 @@ public class MainController {
 		customerList = customerRepository.printCustomerList();
 
 		// 사원 당 몇명의 고객을 담당하는지 출력
-		for (Customer customer : customerList) {
-			System.out.println("직원번호 : " + customer.getAccountMgr() + "\t" + "고객관리(명) : " + customer.getCount());
-		}
+//		for (Customer customer : customerList) {
+//			System.out.println("직원번호 : " + customer.getAccountMgr() + "\t" + "고객관리(명) : " + customer.getCount());
+//		}
 
 		long endTime = System.currentTimeMillis(); // 코드 실행 후 시간 측정
 		double time = (endTime - startTime) / 1000.0;
